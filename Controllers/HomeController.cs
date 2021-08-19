@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace AuthSystem.Controllers
 {
     [Authorize]
@@ -22,6 +23,7 @@ namespace AuthSystem.Controllers
 
         public IActionResult Index()
         {
+            Debug.WriteLine("Index called.");
             return View();
         }
 
@@ -29,6 +31,20 @@ namespace AuthSystem.Controllers
         {
             return View();
         }
+
+        public IActionResult Volunteers()
+        {
+            return View();
+        }
+
+        //public IActionResult Opportunities()
+        //{
+        //    return View();
+        //}
+
+
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

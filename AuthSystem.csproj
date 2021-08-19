@@ -15,4 +15,14 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Admin\" />
+    <None Remove="Data\" />
+    <None Remove="Views\Opportunities\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Data\" />
+    <Folder Include="Views\Opportunities\" />
+  </ItemGroup>
 </Project>

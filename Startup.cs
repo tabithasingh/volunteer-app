@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthSystem.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AuthSystem
 {
@@ -25,6 +27,15 @@ namespace AuthSystem
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddDbContext<OpportunityModelContext>(options =>
+options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+
+            //services.AddTransient<IOpportunityRepository, FakeProductRepository>();
+            services.AddTransient<IOpportunityRepository, EFOpportunityRepository>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

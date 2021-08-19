@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AuthSystem.Models;
 
 [assembly: HostingStartup(typeof(AuthSystem.Areas.Identity.IdentityHostingStartup))]
 namespace AuthSystem.Areas.Identity
@@ -19,6 +20,9 @@ namespace AuthSystem.Areas.Identity
                 services.AddDbContext<AuthDbContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("AuthDbContextConnection")));
+            //services.AddTransient<IOpportunityRepository, EFOpportunityRepository>();
+            //services.AddScoped< IOpportunityRepository, EFOpportunityRepository>();
+
 
                 services.AddDefaultIdentity<ApplicationUser>(options => {
                     options.SignIn.RequireConfirmedAccount = false;

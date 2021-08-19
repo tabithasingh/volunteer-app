@@ -6,6 +6,7 @@ using AuthSystem.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using AuthSystem.Models;
 
 namespace AuthSystem.Data
 {
@@ -23,5 +24,7 @@ namespace AuthSystem.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<Opportunity> Opportunities{ get; set; }
     }
 }
