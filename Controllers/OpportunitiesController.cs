@@ -19,35 +19,36 @@ namespace AuthSystem.Controllers
             repository = repo;
             Debug.WriteLine("OpportunitiesController called");
         }
+        /////////
 
-        //static IList<Opportunity> opportunityList = new List<Opportunity> {
-        //    new Opportunity() {Id = 1, Title = "Opportunity1"}
-        //};
+        public ActionResult Opportunities(string sortOrder)
+        {
+            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            var opportunities = from opportunity in repository.Opportunities
+                                select opportunity;
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    opportunities = opportunities.OrderByDescending(opportunity => opportunity.Title);
+                    break;
 
-        // GET: Opportunity
-
-        //public IActionResult Opportunities()
-        //{
-        //    return View(opportunityList);
-        //}
+                default:
+                    opportunities = opportunities.OrderBy(opportunity => opportunity.Title);
+                    break;
+            }
+            return View(opportunities.ToList());
+        }
 
 
 
 
         //public ViewResult List() => View(repository.Opportunities);
 
-        // Random copy paste code that probably won't work
-        //public ViewResult Items(int id)
+
+        //public IActionResult Opportunities()
         //{
-        //    string item = repository.Opportunities();
-        //    return View(Items);
+        //    return View(repository.Opportunities);
         //}
-
-
-        public IActionResult Opportunities()
-        {
-            return View(repository.Opportunities);
-        }
 
     }
 }

@@ -3,6 +3,19 @@
 *@
 @{ }
 
-<p>This is the admin home page.</p>
-<button><a href="@Url.Action("Volunteers","Volunteer")">Manage Volunteers</a></button>
-<button><a href="@Url.Action("Opportunities","Opportunities")">Manage Opportunities</a></button>
+<div class="d-flex">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p>This is the admin home page.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="px-2"><a href="@Url.Action("Volunteers","Volunteer")">Manage Volunteers</a></button>
+                <button class="px-2"><a href="@Url.Action("Opportunities","Opportunities")">Manage Opportunities</a></button>
+            </div>
+           
+        </div>
+    </div>
+</div>

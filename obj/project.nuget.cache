@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "bM33BRAU3WzL//ENPPA5sTjBRA+sORhETLI9EVve7CCv2Zv4DENeapdTvj120DSF8Sksh9kmAhyYgEMGumi5/Q==",
+  "dgSpecHash": "t6aY2cQOQpUuha2rDQHWFBPUHKnHJB883vmMo7CrRt8eSFH2B4ff+cU2n3OXSJBjEJG96xXf+MAfq4hJzOyMAQ==",
   "success": true,
-  "projectFilePath": "/Users/Tabitha/Downloads/AuthSystem/AuthSystem/AuthSystem.csproj",
+  "projectFilePath": "/Users/Tabitha/Projects/AuthSystem/AuthSystem/AuthSystem.csproj",
   "expectedPackageFiles": [
+    "/Users/Tabitha/.nuget/packages/bootstrap/5.1.0/bootstrap.5.1.0.nupkg.sha512",
     "/Users/Tabitha/.nuget/packages/microsoft.aspnetcore.cryptography.internal/3.1.15/microsoft.aspnetcore.cryptography.internal.3.1.15.nupkg.sha512",
     "/Users/Tabitha/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/3.1.15/microsoft.aspnetcore.cryptography.keyderivation.3.1.15.nupkg.sha512",
     "/Users/Tabitha/.nuget/packages/microsoft.aspnetcore.html.abstractions/2.2.0/microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

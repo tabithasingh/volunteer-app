@@ -32,15 +32,7 @@ namespace AuthSystem.Controllers
             return View();
         }
 
-        public IActionResult Volunteers()
-        {
-            return View();
-        }
-
-        //public IActionResult Opportunities()
-        //{
-        //    return View();
-        //}
+       
 
 
 
