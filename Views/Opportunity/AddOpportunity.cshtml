@@ -33,6 +33,17 @@
                 </div>
                 <br />
                 <div class="row">
+                    <div class="col">
+                        <label asp-for="DateAdded"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="DateAdded" class="form-control" />
+                        <span asp-validation-for="DateAdded" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
                     <div class="col-8 offset-4 row">
                         
                         <div class="col">
