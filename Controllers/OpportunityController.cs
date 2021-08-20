@@ -85,6 +85,7 @@ namespace AuthSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                opp.DateAdded = DateTime.Now;
                 _db.OpportunityList.Update(opp);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
