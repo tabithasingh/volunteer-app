@@ -1,4 +1,4 @@
-﻿using AuthSystem.Areas.Identity.Data;
+using AuthSystem.Areas.Identity.Data;
 using AuthSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,14 +16,31 @@ namespace AuthSystem.Controllers
         {
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult Index(string title, string center)//, string day_added)
         {
-            IEnumerable<OpportunityList> OppList = _db.OpportunityList;
-            return View(OppList);
+
+            // Populates dropdown in view
+            ViewBag.Center = (from o in _db.OpportunityList
+                                select o.OpportunityCenter).Distinct();
+
+
+
+            // Filtering logic
+            var opportunities = from o in _db.OpportunityList
+                                orderby o.OpportunityTitle
+                                where o.OpportunityTitle.Contains(title) || title == null || title == ""
+                                where o.OpportunityCenter.Contains(center) || center == null || center == ""
+                                //where ((o.Day_added).ToString()) == day_added || day_added == null || day_added == ""
+                                select o;
+            return View(opportunities);
         }
 
+
+
+
+
         //This method leads you to the page that allows you to add new opportunities
-        public IActionResult AddOpportunity() 
+        public IActionResult AddOpportunity()
         {
             return View();
         }
@@ -45,19 +62,19 @@ namespace AuthSystem.Controllers
         //This method leads you to the page that allows you to edit the opportunities
         public IActionResult EditOpportunity(int? Id)
         {
-            
+
             if (Id == 0)
             {
                 return NotFound();
             }
-            
+
             var obj = _db.OpportunityList.Find(Id);
             if (obj == null)
             {
                 return NotFound();
             }
             return View(obj);
-            
+
         }
 
         //This method will update the edit made to the opportunity
@@ -97,11 +114,11 @@ namespace AuthSystem.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeleteOpportunityEntity(int? Id)
         {
-            var entity = _db.OpportunityList.Find(Id);            
+            var entity = _db.OpportunityList.Find(Id);
             _db.OpportunityList.Remove(entity);
             _db.SaveChanges();
-            return RedirectToAction("Index");           
-            
+            return RedirectToAction("Index");
+
         }
 
     }
