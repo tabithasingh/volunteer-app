@@ -1,0 +1,43 @@
+﻿@model IEnumerable<OpportunityList>
+
+<h1>Manage Opportunities</h1>
+
+<div class="container p-5">
+    <div class="row p-3">
+        <div class="col">
+            <h2 class="text-primary">Opportunity List</h2>
+        </div>
+        <div class="col text-right">
+            <a asp-controller="Opportunity" asp-action="AddOpportunity" class="btn btn-primary">Add New Opportunity</a>
+        </div>
+    </div>
+
+    <br />
+
+    @if (Model.Count() > 0) { 
+        <table class="table table-bordered" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Opportunity Center</th>
+                    <th>Opportunity Title</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var obj in Model){ 
+                    <tr>
+                        <td>@obj.OpportunityCenter</td>
+                        <td>@obj.OpportunityTitle</td>
+                        <td class="w-25 text-center">
+                            <div class="btn-group" role="group">
+                                <a asp-controller="Opportunity" asp-route-Id="@obj.Id" asp-action="EditOpportunity" class="btn btn-primary">Edit</a>
+                                <a asp-controller="Opportunity" asp-route-Id="@obj.Id" asp-action="DeleteOpportunity" class="btn btn-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table> 
+    
+    }
+</div>

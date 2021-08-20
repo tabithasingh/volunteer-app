@@ -1,0 +1,61 @@
+﻿@model OpportunityList
+
+
+<form method="post">
+    <input asp-for="Id" hidden/>
+    <div class="border p-5">
+        <div class="row">
+            <h2 class="text-info">Edit Opportunity</h2>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="OpportunityCenter"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="OpportunityCenter" class="form-control" />
+                        <span asp-validation-for="OpportunityCenter" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="OpportunityTitle"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="OpportunityTitle" class="form-control" />
+                        <span asp-validation-for="OpportunityTitle" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" class="btn btn-primary w-100" value="Update" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}

@@ -1,0 +1,61 @@
+﻿@model OpportunityList
+
+
+<form method="post" asp-action="AddOpportunity">
+    <div class="border p-5">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <h2 class="text-info">Add New Opportunity</h2>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col">
+                        <label asp-for="OpportunityCenter"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="OpportunityCenter" class="form-control" />
+                        <span asp-validation-for="OpportunityCenter" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col">
+                        <label asp-for="OpportunityTitle"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="OpportunityTitle" class="form-control" />
+                        <span asp-validation-for="OpportunityTitle" class="text-danger"></span>
+                    </div>
+                    
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-8 offset-4 row">
+                        
+                        <div class="col">
+                            <input type="submit" class="btn btn-info w-100" value="Add" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+}
