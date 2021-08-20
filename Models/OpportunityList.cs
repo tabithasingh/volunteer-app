@@ -19,5 +19,8 @@ namespace AuthSystem.Models
         [Required]
         [DisplayName("Opportunity Title")]
         public string OpportunityTitle { get; set; }
+        
+        [DataType(DataType.Date)]
+        public DateTime DateAdded { get; set; }
     }
 }
