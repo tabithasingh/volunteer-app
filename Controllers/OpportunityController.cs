@@ -16,23 +16,39 @@ namespace AuthSystem.Controllers
         {
             _db = db;
         }
-        public IActionResult Index(string title, string center)//, string day_added)
+        public IActionResult Index(string title, string center, string date)
         {
+            // Initializes the current date
+            DateTime currTime = DateTime.Now;
+            DateTime recentDate = DateTime.Now.AddDays(-60);
 
             // Populates dropdown in view
             ViewBag.Center = (from o in _db.OpportunityList
                                 select o.OpportunityCenter).Distinct();
 
+            // If date is true, filter opportunities by the last 60 days
+            if (date == "true")
+            {
+                var filteredOpportunity = from o in _db.OpportunityList
+                                          orderby o.DateAdded
+                                          where o.DateAdded <= currTime && o.DateAdded >= recentDate
+                                          select o;
+                return View(filteredOpportunity);
 
+            }
 
-            // Filtering logic
-            var opportunities = from o in _db.OpportunityList
-                                orderby o.OpportunityTitle
-                                where o.OpportunityTitle.Contains(title) || title == null || title == ""
-                                where o.OpportunityCenter.Contains(center) || center == null || center == ""
-                                //where ((o.Day_added).ToString()) == day_added || day_added == null || day_added == ""
-                                select o;
-            return View(opportunities);
+            // If date is not specified, filter opportunities based on search bar/default
+            else
+            {
+                // Filtering logic
+                var opportunities = from o in _db.OpportunityList
+                                    orderby o.OpportunityTitle
+                                    where o.OpportunityTitle.Contains(title) || title == null || title == ""
+                                    where o.OpportunityCenter.Contains(center) || center == null || center == ""
+                                    //where ((o.Day_added).ToString()) == day_added || day_added == null || day_added == ""
+                                    select o;
+                return View(opportunities);
+            }
         }
 
 
