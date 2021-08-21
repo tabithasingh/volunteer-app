@@ -15,6 +15,8 @@ namespace AuthSystem.Areas.Identity.Data
         }
 
         public DbSet<OpportunityList> OpportunityList { get; set; }
+        
+        public DbSet<VolunteerList> VolunteerList { get; set; }
 
     }
 }
