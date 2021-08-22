@@ -24,5 +24,9 @@ namespace AuthSystem.Models
         [DisplayName("Date")]
         [DataType(DataType.Date)]
         public DateTime DateAdded { get; set; }
+        
+        [Required]
+        [DisplayName("Availability. Please enter in days of the week you are available. M-Monday T-Tuesday W-Wednesday R-Thursday F-Friday Sa-Saturday Su-Sunday")]
+        public string Availability { get; set; }
     }
 }
