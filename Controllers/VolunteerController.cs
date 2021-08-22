@@ -1,25 +1,58 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-//using volunteer_app.Models;
 using Microsoft.EntityFrameworkCore;
+using AuthSystem.Areas.Identity.Data;
+using AuthSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 
 
-namespace volunteer_app.Controllers
+namespace AuthSystem.Controllers
 {
     public class VolunteerController : Controller
     {
         private readonly ApplicationDbContext _db;
-        
+
         public VolunteerController(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string status, string option, string searchTerm)
         {
-            IEnumerable<VolunteerList> VolunteerList = _db.VolunteerList;
-            return View(VolunteerList);
+            // Populates dropdown in view
+            ViewBag.ApprovalStatus = (from v in _db.VolunteerList
+                                select v.ApprovalStatus).Distinct();
+
+            switch (option)
+            {
+                case "reset":
+                    return View(_db.VolunteerList.ToList());
+                case "first-name":
+                    return View(_db.VolunteerList.Where(x => x.FirstName == searchTerm || searchTerm == null).ToList());
+                case "last-name":
+                    return View(_db.VolunteerList.Where(x => x.LastName == searchTerm || searchTerm == null).ToList());
+                case "center-preference":
+                    return View(_db.VolunteerList.Where(x => x.OpportunityCenterPreference.Contains(searchTerm) || searchTerm == null).ToList());
+                default:
+                    break;
+            }
+
+
+
+            //// Filtering logic
+            var volunteers = from v in _db.VolunteerList
+                                orderby v.FirstName
+                                where v.ApprovalStatus == status || status == null || status == ""
+                                
+                                    
+                                //where o.OpportunityCenter.Contains(center) || center == null || center == ""
+                                //where ((o.Day_added).ToString()) == day_added || day_added == null || day_added == ""
+                                select v;
+
+            return View(volunteers.ToList());
+               
         }
 
         //This method leads you to the page that allows you to add new volunteers
@@ -102,21 +135,5 @@ namespace volunteer_app.Controllers
             return RedirectToAction("Index");
 
         }
-
-        
-        // Logic to return view with data populated from the database
-
-        //private readonly VolunteerModelContext _context;
-
-        //public VolunteerController(VolunteerModelContext context)
-        //{
-        //    _context = context;
-        //}
-
-        // GET: VolunteerModel2
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.VolunteerModel.ToListAsync());
-        //}
     }
 }
