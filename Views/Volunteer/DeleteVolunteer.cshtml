@@ -1,0 +1,72 @@
+﻿@model VolunteerList
+
+<form method="post" asp-action="DeleteVolunteerEntity">
+    <input asp-for="Id" hidden />
+    <div class="border p-5">
+        <div class="row">
+            <h2 class="text-info">Delete Volunteer</h2>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Username"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Username" disabled class="form-control" />
+
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="FirstName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="FirstName" disabled class="form-control" />
+
+                    </div>
+
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="LastName"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="LastName" disabled class="form-control" />
+
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col offset-4 row">
+
+                        <div class="col">
+                            <input type="submit" class="btn btn-danger w-100" value="Delete" />
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-success w-100">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+
+</form>
+
+@section Scripts{
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+} 
