@@ -1,12 +1,7 @@
 TODO:
--- Change multiple search bars for each column into one search bar that searches all of the columns in the table
--- Display error message in case of no search results
 -- Figure out how Volunteers and Opportunities will be matched (location? Approval status? Preferred centers?)
 -- Implement opportunity match functionality (Use Case 2: 2.3)
 
--- Create Volunteer data model
--- Populate database with a few fake volunteers
--- Duplicate code for Opportunity model, controller, and CRUD views and edit to create volunteer pages
 -- Hash password when storing in database (SHA-256?)
 -- Implement volunteer match functionality (Use Case 1: 2.3)
 -- Add data validation?
