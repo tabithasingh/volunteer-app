@@ -3,14 +3,16 @@
 <h1>Manage Opportunities</h1>
 
 <div class="container p-5">
-    <div class="row p-3">
-        <div class="col">
-            <h2 class="text-primary">Opportunity List</h2>
-        </div>
-        <div class="col text-right">
-            <a asp-controller="Opportunity" asp-action="AddOpportunity" class="btn btn-primary">Add New Opportunity</a>
-        </div>
+    @if (Model.Count() > 0)
+    {
+<div class="row p-3">
+    <div class="col">
+        <h2 class="text-primary">Opportunity List</h2>
     </div>
+    <div class="col text-right">
+        <a asp-controller="Opportunity" asp-action="AddOpportunity" class="btn btn-primary">Add New Opportunity</a>
+    </div>
+</div>}
 
     <br />
 
@@ -29,46 +31,44 @@
     <tbody>
         @foreach (var obj in Model)
         {
-        <tr>
-            <td>@obj.OpportunityCenter</td>
-            <td>@obj.OpportunityTitle</td>
-            <td>@obj.DateAdded</td>
-            <td class="w-25 text-center">
-                <div class="btn-group" role="group">
-                    <a asp-controller="Opportunity" asp-route-Id="@obj.Id" asp-action="EditOpportunity" class="btn btn-primary">Edit</a>
-                    <a asp-controller="Opportunity" asp-route-Id="@obj.Id" asp-action="DeleteOpportunity" class="btn btn-danger">Delete</a>
-                </div>
-            </td>
-        </tr>}
-            </tbody>
-        </table>            }
+<tr>
+    <td>@obj.OpportunityCenter</td>
+    <td>@obj.OpportunityTitle</td>
+    <td>@obj.DateAdded</td>
+    <td class="w-25 text-center">
+        <div class="btn-group" role="group">
+            <a asp-controller="Opportunity" asp-route-Id="@obj.Id" asp-action="EditOpportunity" class="btn btn-primary">Edit</a>
+            <a asp-controller="Opportunity" asp-route-Id="@obj.Id" asp-action="DeleteOpportunity" class="btn btn-danger">Delete</a>
+        </div>
+    </td>
+</tr>
+}
+    </tbody>
+</table> }
+else
+{
+<p>No results were found for that search term.</p>
+            }
         </div>
         <div class="col">
-
             <div class="search-container input-group my-2">
                 <form asp-controller="Opportunity" asp-action="Index" class="form-inline">
-                    <label for="search-title">Search by Title:</label>
-                    <input type="text" class="form-control" placeholder="Search..." name="title">
-                    <input type="submit" value="Filter" class="btn btn-outline-success my-2 my-sm-0" />
-                </form>
-            </div>
-
-            <div class="search-container input-group my-2">
-                <form asp-controller="Opportunity" asp-action="Index" class="form-inline">
-                    <label for="search-center">Search by Center:</label>
-                    <input type="text" class="form-control" placeholder="Search..." name="center">
-                    <input type="submit" value="Filter" class="btn btn-outline-success my-2 my-sm-0" />
+                    <label for="search-title">Search by:</label>
+                    <select name="option">
+                        <option value="title">Title</option>
+                        <option value="center">Center</option>
+                        @*<option value="days-open">Days Open</option>*@
+                    </select>
+                    <input type="text" class="form-control" placeholder="Search..." name="searchTerm">
+                    <input type="submit" value="Filter" class="btn btn-outline-success my-2 my-sm-0" name="Search" />
                 </form>
             </div>
 
 
             @using (Html.BeginForm())
             {
-                <text>Center</text>@Html.DropDownList("center", new SelectList(ViewBag.Center))
+        <text>Center</text>@Html.DropDownList("center", new SelectList(ViewBag.Center))
                         <input type="submit" value="Search" class="btn btn-primary" />}
-
-
-
 
             @*Filters database results by the latest 60 days*@
             <div class="search-container input-group my-2">
@@ -77,15 +77,11 @@
                 </form>
             </div>
 
-            @*Removes filter sorting out most recent*@
-            <div class="search-container input-group my-2">
-                <form asp-controller="Opportunity" asp-action="Index" class="form-inline">
-                    <button value="" name="date" class="btn btn-primary">Filter by all dates</button>
-                </form>
-            </div>
-
 
             <button class="btn btn-primary">View Volunteer Opportunity Matches</button>
+            @using (Html.BeginForm())
+            {
+        <button type="submit" class="btn btn-danger my-3" value="reset" name="option">Reset Filters</button>            }
         </div>
     </div>
 
