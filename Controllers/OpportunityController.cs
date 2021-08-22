@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AuthSystem.Controllers
 {
@@ -16,15 +15,32 @@ namespace AuthSystem.Controllers
         {
             _db = db;
         }
-        public IActionResult Index(string title, string center, string date)
+        public IActionResult Index(string searchTerm, string center, string date, string option)
         {
-            // Initializes the current date
             DateTime currTime = DateTime.Now;
             DateTime recentDate = DateTime.Now.AddDays(-60);
 
+
+
             // Populates dropdown in view
             ViewBag.Center = (from o in _db.OpportunityList
-                                select o.OpportunityCenter).Distinct();
+                              select o.OpportunityCenter).Distinct();
+
+            // Handles search bar logic
+            switch (option)
+            {
+                case "reset":
+                    return View(_db.OpportunityList.ToList());
+                case "title":
+                    return View(_db.OpportunityList.Where(x => x.OpportunityTitle.Contains(searchTerm) || searchTerm == null).ToList());
+                case "center":
+                    return View(_db.OpportunityList.Where(x => x.OpportunityCenter.Contains(searchTerm) || searchTerm == null).ToList());
+                //case "days-open":
+                //    return View(_db.OpportunityList.Where(x => x.OpportunityDaysOpen.Contains(searchTerm) || searchTerm == null).ToList());
+                default:
+                    break;
+            }
+
 
             // If date is true, filter opportunities by the last 60 days
             if (date == "true")
@@ -37,21 +53,16 @@ namespace AuthSystem.Controllers
 
             }
 
-            // If date is not specified, filter opportunities based on search bar/default
+            // If date is not specified, filter opportunities based on default or dropdown
             else
             {
-                // Filtering logic
                 var opportunities = from o in _db.OpportunityList
                                     orderby o.OpportunityTitle
-                                    where o.OpportunityTitle.Contains(title) || title == null || title == ""
                                     where o.OpportunityCenter.Contains(center) || center == null || center == ""
-                                    //where ((o.Day_added).ToString()) == day_added || day_added == null || day_added == ""
                                     select o;
-                return View(opportunities);
+                return View(opportunities.ToList());
             }
         }
-
-
 
 
 
