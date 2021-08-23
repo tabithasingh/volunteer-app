@@ -1,18 +1,18 @@
-﻿@model VolunteerList
+@model VolunteerList
 
 
 <form method="post" asp-action="AddVolunteer">
     <div class="border p-5">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
-            <h2 class="text-info">Add New Opportunity</h2>
+            <h2 class="text-info">Add New Volunteer</h2>
         </div>
         <br />
         <div class="row">
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <label asp-for="FirstName"></label>
+                        <label class="required" asp-for="FirstName"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="FirstName" class="form-control" />
@@ -23,7 +23,7 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="LastName"></label>
+                        <label class="required" asp-for="LastName"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="LastName" class="form-control" />
@@ -34,7 +34,7 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="Username"></label>
+                        <label class="required" asp-for="Username"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="Username" class="form-control" />
@@ -45,10 +45,10 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="Password"></label>
+                        <label class="required" asp-for="Password"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Password" class="form-control" />
+                        <input asp-for="Password" type="password" class="form-control" />
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
 
@@ -78,10 +78,10 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="Availability"></label>
+                        <label class="required" asp-for="Availability"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Availability" class="form-control" />
+                        <input id="availabilityVolunteer" asp-for="Availability" class="form-control" pattern="^[a-zA-Z]+(,[a-zA-Z]+)*$" placeholder="M,W,F"/>
                         <span asp-validation-for="Availability" class="text-danger"></span>
                     </div>
 
@@ -89,7 +89,7 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="Address"></label>
+                        <label class="required" asp-for="Address"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="Address" class="form-control" />
@@ -100,10 +100,10 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="Phonenumber"></label>
+                        <label class="required" asp-for="Phonenumber"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Phonenumber" class="form-control" />
+                        <input pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" asp-for="Phonenumber" class="form-control" />
                         <span asp-validation-for="Phonenumber" class="text-danger"></span>
                     </div>
 
@@ -111,10 +111,10 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="Email"></label>
+                        <label class="required" asp-for="Email"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Email" class="form-control" />
+                        <input type="email" asp-for="Email" class="form-control" />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
@@ -133,7 +133,7 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="License"></label>
+                        <label class="required" asp-for="License"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="License" class="form-control" />
@@ -144,7 +144,7 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="EmergencyContactName"></label>
+                        <label class="required" asp-for="EmergencyContactName"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="EmergencyContactName" class="form-control" />
@@ -155,10 +155,10 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="EmergencyContactNumber"></label>
+                        <label class="required" asp-for="EmergencyContactNumber"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="EmergencyContactNumber" class="form-control" />
+                        <input pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" asp-for="EmergencyContactNumber" class="form-control" />
                         <span asp-validation-for="EmergencyContactNumber" class="text-danger"></span>
                     </div>
 
@@ -166,10 +166,10 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="EmergencyContactEmail"></label>
+                        <label class="required" asp-for="EmergencyContactEmail"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="EmergencyContactEmail" class="form-control" />
+                        <input type="email" asp-for="EmergencyContactEmail" class="form-control" />
                         <span asp-validation-for="EmergencyContactEmail" class="text-danger"></span>
                     </div>
 
@@ -177,7 +177,7 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="EmergencyContactAddress"></label>
+                        <label class="required" asp-for="EmergencyContactAddress"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="EmergencyContactAddress" class="form-control" />
@@ -191,7 +191,7 @@
                         <label asp-for="DriversLicenseAvailable"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="DriversLicenseAvailable" class="form-control" />
+                        <input type="checkbox" asp-for="DriversLicenseAvailable" class="form-check" />
                         <span asp-validation-for="DriversLicenseAvailable" class="text-danger"></span>
                     </div>
 
@@ -202,7 +202,7 @@
                         <label asp-for="SocialSecurityAvailable"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="SocialSecurityAvailable" class="form-control" />
+                        <input type="checkbox" asp-for="SocialSecurityAvailable" class="form-check" />
                         <span asp-validation-for="SocialSecurityAvailable" class="text-danger"></span>
                     </div>
 
@@ -210,10 +210,17 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="ApprovalStatus"></label>
+                        <label class="required" asp-for="ApprovalStatus"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="ApprovalStatus" class="form-control" />
+                        <select asp-for="ApprovalStatus" class="form-select">
+                            <option value="" selected disabled>Select one...</option>
+                            <option value="Approved">Approved</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Disapproved">Disapproved</option>
+                            <option value="Inactive">Inactive</option>
+
+                        </select>
                         <span asp-validation-for="ApprovalStatus" class="text-danger"></span>
                     </div>
 
@@ -223,7 +230,7 @@
                     <div class="col-8 offset-4 row">
 
                         <div class="col">
-                            <input type="submit" class="btn btn-info w-100" value="Add" />
+                            <input type="submit" class="btn btn-primary w-100" value="Add" />
                         </div>
                         <div class="col">
                             <a asp-action="Index" class="btn btn-success w-100">Back</a>
@@ -232,7 +239,7 @@
                 </div>
             </div>
             <div class="col-4">
-                
+
             </div>
         </div>
     </div>
