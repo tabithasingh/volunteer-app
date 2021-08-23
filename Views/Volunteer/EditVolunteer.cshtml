@@ -1,8 +1,8 @@
-﻿@model VolunteerList
+@model VolunteerList
 
 
 <form method="post">
-    <input asp-for="Id" hidden/>
+    <input asp-for="Id" hidden />
     <div class="border p-5">
         <div class="row">
             <h2 class="text-info">Edit Volunteer</h2>
@@ -185,13 +185,13 @@
                     </div>
 
                 </div>
-                <br />
+<br />
                 <div class="row">
                     <div class="col">
                         <label asp-for="DriversLicenseAvailable"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="DriversLicenseAvailable" class="form-control" />
+                        <input type="checkbox" asp-for="DriversLicenseAvailable" class="form-check" />
                         <span asp-validation-for="DriversLicenseAvailable" class="text-danger"></span>
                     </div>
 
@@ -202,7 +202,7 @@
                         <label asp-for="SocialSecurityAvailable"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="SocialSecurityAvailable" class="form-control" />
+                        <input type="checkbox" asp-for="SocialSecurityAvailable" class="form-check" />
                         <span asp-validation-for="SocialSecurityAvailable" class="text-danger"></span>
                     </div>
 
