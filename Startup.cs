@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AuthSystem.Models;
 using Microsoft.EntityFrameworkCore;
+using AuthSystem.Areas.Identity.Data;
 
 namespace AuthSystem
 {
@@ -28,12 +29,9 @@ namespace AuthSystem
             services.AddControllersWithViews();
             services.AddRazorPages();
 
-            services.AddDbContext<OpportunityModelContext>(options =>
+            
+            services.AddDbContext<ApplicationDbContext>(options =>
 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-
-            //services.AddTransient<IOpportunityRepository, FakeProductRepository>();
-            services.AddTransient<IOpportunityRepository, EFOpportunityRepository>();
 
 
         }
