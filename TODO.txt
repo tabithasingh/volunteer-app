@@ -1,7 +1,0 @@
-TODO:
--- Give opportunity-volunteer match priority based on volunteer preference (if easily doable)
--- Constrain availability data to be comma separated
--- Check that data validation is moderately comprehensive
--- Double-check solution requirements
--- Double-check Github contains all needed files (and no extraneous ones)
--- Figure out how database will be implemented-local? Server?
