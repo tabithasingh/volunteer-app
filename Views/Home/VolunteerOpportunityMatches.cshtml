@@ -1,0 +1,30 @@
+﻿@model IEnumerable<OpportunityList>
+
+<div class="d-flex">
+    <div class="container">
+        <h1>Volunteer-Opportunity Matches</h1>
+        <table class="table">
+            <tr>
+                @foreach (var person in ViewBag.Keys)
+                {
+                    <td>@person.FirstName</td>
+                }
+            </tr>
+
+            <tr>
+                @foreach (var opportunities in ViewBag.Values)
+                {
+                    <td>
+                        <ul>
+                            @foreach (var opportunity in opportunities)
+                            {
+                                <li>@opportunity</li>
+                            }
+                        </ul>
+                    </td>
+
+                }
+            </tr>
+        </table>
+    </div>
+</div>
