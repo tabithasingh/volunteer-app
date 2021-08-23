@@ -1,4 +1,4 @@
-﻿@*
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{ }
@@ -8,16 +8,14 @@
         <div class="row">
             <div class="col">
                 <p>This is the admin home page.</p>
-                <a asp-controller="Opportunity" asp-action="Index" class="btn btn-primary">Manage Opportunities</a>
-                <a asp-controller="Volunteer" asp-action="Index" class="btn btn-primary">Manage Volunteers</a>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button class="px-2"><a href="@Url.Action("Volunteers","Volunteer")">Manage Volunteers</a></button>
-                <button class="px-2"><a href="@Url.Action("Opportunities","Opportunities")">Manage Opportunities</a></button>
+                <a asp-controller="Volunteer" asp-action="Index" class="btn btn-primary">Manage Volunteers</a>
+                <a asp-controller="Opportunity" asp-action="Index" class="btn btn-primary">Manage Opportunities</a>
+                <a asp-controller="Home" asp-action="VolunteerOpportunityMatches" class="btn btn-primary">See Matches</a>
             </div>
-           
         </div>
     </div>
 </div>
