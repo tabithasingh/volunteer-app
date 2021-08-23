@@ -35,8 +35,8 @@ namespace AuthSystem.Controllers
                     return View(_db.OpportunityList.Where(x => x.OpportunityTitle.Contains(searchTerm) || searchTerm == null).ToList());
                 case "center":
                     return View(_db.OpportunityList.Where(x => x.OpportunityCenter.Contains(searchTerm) || searchTerm == null).ToList());
-                //case "days-open":
-                //    return View(_db.OpportunityList.Where(x => x.OpportunityDaysOpen.Contains(searchTerm) || searchTerm == null).ToList());
+                case "days-open":
+                    return View(_db.OpportunityList.Where(x => x.Availability.Contains(searchTerm) || searchTerm == null).ToList());
                 default:
                     break;
             }
