@@ -35,6 +35,7 @@ namespace AuthSystem.Controllers
             return View();
         }
 
+     
         public IActionResult VolunteerOpportunityMatches()
         {
 
@@ -47,13 +48,11 @@ namespace AuthSystem.Controllers
             string[] oAvailability;
 
             // Dictionary with volunteer as key, list of opportunities as value
-           //Dictionary<VolunteerList, List<OpportunityList>> vMatches = new Dictionary<VolunteerList, List<OpportunityList>>();
            Dictionary<VolunteerList, List<string>> vMatches = new Dictionary<VolunteerList, List<string>>();
             
 
             foreach (var volunteer in volunteers) {
                 vAvailability = volunteer.Availability.Split(',');
-                //List<OpportunityList> oMatches = new List<OpportunityList>();
                 List<string> oMatches = new List<string>();
                     foreach (var opportunity in opportunities)
                 {
@@ -64,7 +63,6 @@ namespace AuthSystem.Controllers
                     {
                         oMatches.Add(opportunity.OpportunityTitle);
                     }
-
                 }
                 vMatches.Add(volunteer, oMatches);
             }
