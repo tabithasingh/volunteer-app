@@ -23,22 +23,24 @@
 <table class="table table-bordered" style="width:100%">
     <thead>
         <tr>
-            <th>Opportunity Center</th>
-            <th>Opportunity Title</th>
-            <th>Date</th>
+            <th>Title</th>
+            <th>Center</th>
+            <th>Date Added</th>
+            <th>Days Open</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var obj in Model)
         {
 <tr>
-    <td>@obj.OpportunityCenter</td>
     <td>@obj.OpportunityTitle</td>
-    <td>@obj.DateAdded</td>
+    <td>@obj.OpportunityCenter</td>
+    <td>@obj.DateAdded.ToShortDateString()</td>
+    <td>@obj.Availability</td>
     <td class="w-25 text-center">
         <div class="btn-group" role="group">
-            <a asp-controller="Opportunity" asp-route-Id="@obj.Id" asp-action="EditOpportunity" class="btn btn-primary">Edit</a>
-            <a asp-controller="Opportunity" asp-route-Id="@obj.Id" asp-action="DeleteOpportunity" class="btn btn-danger">Delete</a>
+            <a asp-controller="Opportunity" asp-route-Id="@obj.Id" asp-action="EditOpportunity" class="btn btn-outline-primary">Edit</a>
+            <a asp-controller="Opportunity" asp-route-Id="@obj.Id" asp-action="DeleteOpportunity" class="btn btn-outline-danger">Delete</a>
         </div>
     </td>
 </tr>
@@ -47,42 +49,46 @@
 </table> }
 else
 {
-<p>No results were found for that search term.</p>
-            }
+<p>No results were found for that search term.</p>}
         </div>
         <div class="col">
             <div class="search-container input-group my-2">
                 <form asp-controller="Opportunity" asp-action="Index" class="form-inline">
-                    <label for="search-title">Search by:</label>
+                    <label for="search-title" class="pr-2 mb-3">Search by:</label>
                     <select name="option">
                         <option value="title">Title</option>
                         <option value="center">Center</option>
-                        @*<option value="days-open">Days Open</option>*@
+                        <option value="days-open">Days Open</option>
                     </select>
-                    <input type="text" class="form-control" placeholder="Search..." name="searchTerm">
-                    <input type="submit" value="Filter" class="btn btn-outline-success my-2 my-sm-0" name="Search" />
+
+                    <div class="input-group mb-2">
+                            <input type="search" class="form-control" placeholder="Search..." name="searchTerm">
+                            <input type="submit" value="Filter" class="btn btn-primary my-2 my-sm-0" name="Search" />
+                    </div>
                 </form>
             </div>
 
-
-            @using (Html.BeginForm())
-            {
-        <text>Center</text>@Html.DropDownList("center", new SelectList(ViewBag.Center))
-                        <input type="submit" value="Search" class="btn btn-primary" />}
-
-            @*Filters database results by the latest 60 days*@
-            <div class="search-container input-group my-2">
-                <form asp-controller="Opportunity" asp-action="Index" class="form-inline">
-                    <button value="true" name="date" class="btn btn-primary">Filter by recent (60 days)</button>
-                </form>
-            </div>
-
-
-            <button class="btn btn-primary">View Volunteer Opportunity Matches</button>
-            @using (Html.BeginForm())
-            {
-        <button type="submit" class="btn btn-danger my-3" value="reset" name="option">Reset Filters</button>            }
+        <div class="input-group mb-2">
+        @using (Html.BeginForm())
+        {
+            <span class="mr-2">Filter by Center: </span>@Html.DropDownList("center", new SelectList(ViewBag.Center))
+                <input type="submit" value="Search" class="btn btn-primary" />
+        }
         </div>
+
+        @*Filters database results by the latest 60 days*@
+        <div class="search-container input-group my-2">
+            <form asp-controller="Opportunity" asp-action="Index" class="form-inline mb-3">
+                <button value="true" name="date" class="btn btn-primary">Filter by recent (60 days)</button>
+            </form>
+        </div>
+
+
+        <a asp-controller="Home" asp-action="VolunteerOpportunityMatches" class="btn btn-primary">View Volunteer Opportunity Matches</a>
+        @using (Html.BeginForm())
+        {
+<button type="submit" class="btn btn-danger my-3" value="reset" name="option">Reset Filters</button>}
     </div>
+</div>
 
 </div>
