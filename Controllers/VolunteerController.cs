@@ -21,10 +21,8 @@ namespace AuthSystem.Controllers
 
         public IActionResult Index(string status, string option, string searchTerm)
         {
-            // Populates dropdown in view
-            ViewBag.ApprovalStatus = (from v in _db.VolunteerList
-                                select v.ApprovalStatus).Distinct();
 
+            // Sorts results based on search term in the column specified by 'option'
             switch (option)
             {
                 case "reset":
@@ -39,19 +37,26 @@ namespace AuthSystem.Controllers
                     break;
             }
 
+            // Sorts results based on approval status
+            switch (status)
+            {
+                case "approved-pending":
+                    return View(_db.VolunteerList.Where(x => x.ApprovalStatus == "Approved" || x.ApprovalStatus == "Pending").ToList());
+                case "approved":
+                    return View(_db.VolunteerList.Where(x => x.ApprovalStatus == "Approved").ToList());
+                case "pending":
+                    return View(_db.VolunteerList.Where(x => x.ApprovalStatus == "Pending").ToList());
+                case "disapproved":
+                    return View(_db.VolunteerList.Where(x => x.ApprovalStatus == "Disapproved").ToList());
+                case "inactive":
+                    return View(_db.VolunteerList.Where(x => x.ApprovalStatus == "Inactive").ToList());
+                case "all":
+                    return View(_db.VolunteerList.ToList());
+                default:
+                    break;
+            }
 
-
-            //// Filtering logic
-            var volunteers = from v in _db.VolunteerList
-                                orderby v.FirstName
-                                where v.ApprovalStatus == status || status == null || status == ""
-                                
-                                    
-                                //where o.OpportunityCenter.Contains(center) || center == null || center == ""
-                                //where ((o.Day_added).ToString()) == day_added || day_added == null || day_added == ""
-                                select v;
-
-            return View(volunteers.ToList());
+            return View(_db.VolunteerList.ToList());
                
         }
 
