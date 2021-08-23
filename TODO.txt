@@ -1,8 +1,7 @@
 TODO:
--- Figure out how Volunteers and Opportunities will be matched (location? Approval status? Preferred centers?)
--- Implement opportunity match functionality (Use Case 2: 2.3)
-
--- Hash password when storing in database (SHA-256?)
--- Implement volunteer match functionality (Use Case 1: 2.3)
--- Add data validation?
+-- Give opportunity-volunteer match priority based on volunteer preference (if easily doable)
+-- Constrain availability data to be comma separated
+-- Check that data validation is moderately comprehensive
 -- Double-check solution requirements
+-- Double-check Github contains all needed files (and no extraneous ones)
+-- Figure out how database will be implemented-local? Server?
