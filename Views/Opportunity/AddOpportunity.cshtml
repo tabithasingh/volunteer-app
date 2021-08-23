@@ -1,4 +1,4 @@
-﻿@model OpportunityList
+@model OpportunityList
 
 
 <form method="post" asp-action="AddOpportunity">
@@ -12,7 +12,7 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <label asp-for="OpportunityCenter"></label>
+                        <label class="required" asp-for="OpportunityCenter"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="OpportunityCenter" class="form-control" />
@@ -23,44 +23,44 @@
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="OpportunityTitle"></label>
+                        <label class="required" asp-for="OpportunityTitle"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="OpportunityTitle" class="form-control" />
                         <span asp-validation-for="OpportunityTitle" class="text-danger"></span>
                     </div>
-                    
+
                 </div>
                 <br />
                 <div class="row">
                     <div class="col">
-                        <label asp-for="DateAdded"></label>
+                        <label class="required" asp-for="DateAdded"></label>
                     </div>
                     <div class="col-8">
                         <input asp-for="DateAdded" class="form-control" />
                         <span asp-validation-for="DateAdded" class="text-danger"></span>
                     </div>
-
                 </div>
                 <br />
-                
+
                 <div class="row">
                     <div class="col">
-                        <label asp-for="Availability"></label>
+                        <label class="required" asp-for="Availability"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="Availability" class="form-control" />
-                        <span asp-validation-for="Availability" class="text-danger"></span>
-                    </div>
+                        <input asp-for="Availability" class="form-control" pattern="^[a-zA-Z]+(,[a-zA-Z]+)*$" placeholder="M,T,W,R,F,Sa,Su"/>
 
+                        <span asp-validation-for="Availability" class="text-danger"></span>
+                        <small>Please separate values by commas</small>
+                    </div>
                 </div>
                 <br />
-                
                 <div class="row">
+
                     <div class="col-8 offset-4 row">
-                        
+
                         <div class="col">
-                            <input type="submit" class="btn btn-info w-100" value="Add" />
+                            <input type="submit" class="btn btn-primary w-100" value="Add" />
                         </div>
                         <div class="col">
                             <a asp-action="Index" class="btn btn-success w-100">Back</a>
